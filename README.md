@@ -147,8 +147,6 @@ Building an active ERP platform with a focus on usable interfaces, structured wo
   <br />
   <br />
 
-  <b>Phone:</b> +91-9452121385
-
 </div>
 
 ---
