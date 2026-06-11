@@ -1,21 +1,160 @@
+<div align="center">
 
-## 🌐 Socials:
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/Ojaswi Kashtheriya ) [![Mastodon](https://img.shields.io/badge/-MASTODON-%232B90D9?logo=mastodon&logoColor=white)](https://mastodon.social/@Ojaswi Kashtheriya) [![email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:ojaswikasteriya@gmail.com) 
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=190&color=0:0F172A,45:2563EB,100:14B8A6&text=Ojaswi%20Kashtheriya&fontColor=ffffff&fontSize=44&fontAlignY=36&desc=Frontend%20Developer%20%7C%20UI%2FUX%20Designer%20%7C%20MERN%20Stack%20Builder&descAlignY=58&descSize=16" alt="Ojaswi Kashtheriya banner" />
 
-# 💻 Tech Stack:
-![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white) ![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7) ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white) ![Render](https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white) ![Angular.js](https://img.shields.io/badge/angular.js-%23E23237.svg?style=for-the-badge&logo=angularjs&logoColor=white) ![Alpine.js](https://img.shields.io/badge/alpinejs-white.svg?style=for-the-badge&logo=alpinedotjs&logoColor=%238BC0D0) ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white) ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white) ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![OpenCV](https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white) ![Semantic UI React](https://img.shields.io/badge/Semantic%20UI%20React-%2335BDB2.svg?style=for-the-badge&logo=SemanticUIReact&logoColor=white) ![Three js](https://img.shields.io/badge/threejs-black?style=for-the-badge&logo=three.js&logoColor=white) ![Vue.js](https://img.shields.io/badge/vue.js-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D) ![Web3.js](https://img.shields.io/badge/web3.js-F16822?style=for-the-badge&logo=web3.js&logoColor=white) ![Firebase](https://img.shields.io/badge/firebase-a08021?style=for-the-badge&logo=firebase&logoColor=ffcd34) ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white) ![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white) ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white) ![Adobe After Effects](https://img.shields.io/badge/Adobe%20After%20Effects-9999FF.svg?style=for-the-badge&logo=Adobe%20After%20Effects&logoColor=white) ![Adobe Lightroom](https://img.shields.io/badge/Adobe%20Lightroom-31A8FF.svg?style=for-the-badge&logo=Adobe%20Lightroom&logoColor=white) ![Adobe Photoshop](https://img.shields.io/badge/adobe%20photoshop-%2331A8FF.svg?style=for-the-badge&logo=adobe%20photoshop&logoColor=white) ![Adobe Premiere Pro](https://img.shields.io/badge/Adobe%20Premiere%20Pro-9999FF.svg?style=for-the-badge&logo=Adobe%20Premiere%20Pro&logoColor=white) ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white) ![Framer](https://img.shields.io/badge/Framer-black?style=for-the-badge&logo=framer&logoColor=blue) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
-# 📊 GitHub Stats:
-![](https://github-readme-stats.shion.dev/api?username=vibhu-4444&theme=holi&hide_border=false&include_all_commits=true&count_private=true)<br/>
-![](https://streak-stats.demolab.com/?user=vibhu-4444&theme=holi&hide_border=false)<br/>
-![](https://github-readme-stats.shion.dev/api/top-langs/?username=vibhu-4444&theme=holi&hide_border=false&include_all_commits=true&count_private=true&layout=compact)
+  <br />
 
-## 🏆 GitHub Trophies
-![](https://github-profile-trophy.vercel.app/?username=vibhu-4444&theme=radical&no-frame=false&no-bg=false&margin-w=4)
+  <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=600&size=22&duration=2600&pause=900&color=14B8A6&center=true&vCenter=true&width=720&lines=Building+clean+React+interfaces;Designing+smooth+product+experiences;Exploring+AI%2FML+and+full-stack+systems;Google+Student+Ambassador" alt="Typing intro" />
 
-### ✍️ Random Dev Quote
-![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=light)
+  <br />
+  <br />
+
+  <a href="mailto:ojaswikasteriya@gmail.com">
+    <img src="https://img.shields.io/badge/Email-ojaswikasteriya%40gmail.com-14B8A6?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+  </a>
+  <a href="https://linkedin.com/in/ojaswikashtheriya">
+    <img src="https://img.shields.io/badge/LinkedIn-Ojaswi%20Kashtheriya-2563EB?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+  </a>
+  <a href="https://portfolio-dun-beta-60.vercel.app">
+    <img src="https://img.shields.io/badge/Portfolio-Live%20Site-0F172A?style=for-the-badge&logo=vercel&logoColor=white" alt="Portfolio" />
+  </a>
+
+</div>
 
 ---
-[![](https://komarev.com/ghpvc/?username=vibhu-4444&icon=2&color=6)](https://visitcount.itsvg.in)
 
-<!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
+<div align="center">
+
+  <h3>Frontend Developer and UI/UX Designer focused on practical, polished, user-first web products.</h3>
+
+  <p>
+    React JS | Tailwind CSS | MERN Stack | Figma | AI/ML | Hackathons | Developer Community
+  </p>
+
+</div>
+
+---
+
+## Ojaswi at a Glance
+
+```txt
+Role          Frontend Developer and UI/UX Designer
+Stack         React JS, Tailwind CSS, Node.js, Express.js, MongoDB
+Education     BCA in Artificial Intelligence and Machine Learning
+College       Roorkee College of Engineering
+Current Work  Live College ERP System
+Community     Google Student Ambassador
+Hackathons    4 national hackathons
+```
+
+I build interfaces that feel clear, fast, and intentional. My work sits at the intersection of frontend engineering and product design, where clean components, strong visual hierarchy, and thoughtful user flows matter as much as the code behind them.
+
+I am currently working on a live College ERP system while pursuing a BCA in AI and Machine Learning. I also enjoy hackathons, community work, and building projects that turn rough ideas into usable digital products.
+
+---
+
+## What I Build
+
+<div align="center">
+
+| Product Area | Focus |
+| --- | --- |
+| Frontend Interfaces | Responsive React screens, reusable components, clean layouts |
+| UI/UX Design | Wireframes, flows, Figma systems, user-centered decisions |
+| Full-Stack Features | MERN stack apps, REST APIs, MongoDB-backed workflows |
+| AI/ML Learning | Practical exploration of intelligent systems and data-driven products |
+| Developer Community | Campus learning, peer growth, and tech initiatives |
+
+</div>
+
+---
+
+## Tech Toolkit
+
+<div align="center">
+
+  <img src="https://skillicons.dev/icons?i=js,html,css,cpp,react,tailwind,nodejs,express,mongodb,figma,git,github,vercel,vscode" alt="Tech stack icons" />
+
+</div>
+
+<br />
+
+<div align="center">
+
+| Category | Tools and Skills |
+| --- | --- |
+| Languages | JavaScript ES6+, HTML5, CSS3, C++ |
+| Frontend | React JS, Tailwind CSS, responsive design, component architecture |
+| Backend | Node.js, Express.js, REST APIs |
+| Database | MongoDB |
+| Design | UI/UX Design, Figma, product thinking |
+| Workflow | Git, GitHub, Vercel, VS Code |
+| Foundations | Cybersecurity, Data Analytics, Artificial Intelligence |
+
+</div>
+
+---
+
+## Experience and Work
+
+### Google Student Ambassador
+
+April 2026 - Present | India
+
+Representing and supporting student developer culture through campus initiatives, learning sessions, and community-driven tech activities.
+
+### Live College ERP System
+
+Building an active ERP platform with a focus on usable interfaces, structured workflows, and reliable full-stack implementation.
+
+---
+
+## GitHub Snapshot
+
+<div align="center">
+
+  <img height="170" src="https://github-readme-stats.vercel.app/api?username=vibhu-4444&show_icons=true&theme=tokyonight&hide_border=true&rank_icon=github&include_all_commits=true" alt="GitHub stats" />
+  <img height="170" src="https://github-readme-streak-stats.herokuapp.com?user=vibhu-4444&theme=tokyonight&hide_border=true" alt="GitHub streak" />
+
+  <br />
+  <br />
+
+  <img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=vibhu-4444&layout=compact&theme=tokyonight&hide_border=true&langs_count=8" alt="Top languages" />
+
+  <br />
+  <br />
+
+  <img src="https://github-profile-trophy.vercel.app/?username=vibhu-4444&theme=tokyonight&no-frame=true&no-bg=true&margin-w=12&margin-h=12&column=4" alt="GitHub trophies" />
+
+</div>
+
+---
+
+## Connect
+
+<div align="center">
+
+  <a href="mailto:ojaswikasteriya@gmail.com">
+    <img src="https://img.shields.io/badge/ojaswikasteriya%40gmail.com-Email-14B8A6?style=flat-square&logo=gmail&logoColor=white" alt="Email address" />
+  </a>
+  <a href="https://linkedin.com/in/ojaswikashtheriya">
+    <img src="https://img.shields.io/badge/linkedin.com%2Fin%2Fojaswikashtheriya-LinkedIn-2563EB?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn profile" />
+  </a>
+  <a href="https://portfolio-dun-beta-60.vercel.app">
+    <img src="https://img.shields.io/badge/portfolio-dun--beta--60.vercel.app-Portfolio-0F172A?style=flat-square&logo=vercel&logoColor=white" alt="Portfolio website" />
+  </a>
+
+  <br />
+  <br />
+
+  <b>Phone:</b> +91-9452121385
+
+</div>
+
+---
+
+<div align="center">
+
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=115&section=footer&color=0:14B8A6,45:2563EB,100:0F172A" alt="Footer wave" />
+
+</div>
