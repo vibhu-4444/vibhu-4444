@@ -113,18 +113,14 @@ Building an active ERP platform with a focus on usable interfaces, structured wo
 
 <div align="center">
 
-  <img height="170" src="https://github-readme-stats.vercel.app/api?username=vibhu-4444&show_icons=true&theme=tokyonight&hide_border=true&rank_icon=github&include_all_commits=true" alt="GitHub stats" />
+  <img src="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/lines-changed.svg" alt="Code Change Stats" />
+
+  <br />
+  <br />
   <img height="170" src="https://github-readme-streak-stats.herokuapp.com?user=vibhu-4444&theme=tokyonight&hide_border=true" alt="GitHub streak" />
 
   <br />
   <br />
-
-  <img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=vibhu-4444&layout=compact&theme=tokyonight&hide_border=true&langs_count=8" alt="Top languages" />
-
-  <br />
-  <br />
-
-  <img src="https://github-profile-trophy.vercel.app/?username=vibhu-4444&theme=tokyonight&no-frame=true&no-bg=true&margin-w=12&margin-h=12&column=4" alt="GitHub trophies" />
 
 </div>
 
