@@ -1,0 +1,627 @@
+name: Generate Profile Animations
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+    - cron: "0 12 * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate pacman animation
+        uses: abozanona/pacman-contribution-graph@main
+        with:
+          github_user_name: proxy-cmd
+          github_token: ${{ secrets.ALL_REPOS_PAT }}
+
+      - name: Generate snake animation
+        uses: Platane/snk@v3
+        with:
+          github_user_name: proxy-cmd
+          outputs: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+
+      - name: Generate lines changed card
+        env:
+          GH_USER: proxy-cmd
+          ALL_REPOS_PAT: ${{ secrets.ALL_REPOS_PAT }}
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+
+          write_svg() {
+            local title="$1"
+            local subtitle="$2"
+            local changed="$3"
+            local added="$4"
+            local deleted="$5"
+            cat > dist/lines-changed.svg <<EOF
+          <svg width="495" height="150" viewBox="0 0 495 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lines changed card">
+            <rect width="495" height="150" rx="10" fill="#0d1117"/>
+            <rect x="1" y="1" width="493" height="148" rx="9" fill="none" stroke="#30363d"/>
+            <text x="24" y="38" fill="#58a6ff" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="600">${title}</text>
+            <text x="24" y="72" fill="#8b949e" font-family="Segoe UI, Arial, sans-serif" font-size="16">${subtitle}</text>
+            <text x="24" y="118" fill="#3fb950" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">${changed}</text>
+            <text x="210" y="118" fill="#58a6ff" font-family="Segoe UI, Arial, sans-serif" font-size="16">(+${added} / -${deleted})</text>
+          </svg>
+          EOF
+          }
+
+          # Fallback: this repository only
+          current_repo_totals() {
+            local added deleted changed
+            added=$(git log --pretty=tformat: --numstat | awk '{if ($1 ~ /^[0-9]+$/) add += $1} END {print add+0}')
+            deleted=$(git log --pretty=tformat: --numstat | awk '{if ($2 ~ /^[0-9]+$/) del += $2} END {print del+0}')
+            changed=$((added + deleted))
+            echo "${added} ${deleted} ${changed}"
+          }
+
+          fallback_repo_only() {
+            read -r ADDED DELETED CHANGED <<< "$(current_repo_totals)"
+            write_svg "Total lines of code changed." "Total Lines Changed (This Repo)" "$CHANGED" "$ADDED" "$DELETED"
+          }
+
+          read_previous_totals() {
+            prev_changed=""
+            prev_added=""
+            prev_deleted=""
+
+            git fetch --no-tags origin output:refs/remotes/origin/output >/dev/null 2>&1 || true
+            prev_svg=$(git show origin/output:lines-changed.svg 2>/dev/null || true)
+
+            if [ -n "$prev_svg" ]; then
+              # Remove newlines to make regex work across lines
+              prev_svg_oneline=$(echo "$prev_svg" | tr -d '\n')
+              prev_changed=$(echo "$prev_svg_oneline" | sed -n 's/.*font-size="34" font-weight="700">\([0-9][0-9]*\)<.*/\1/p' | head -n1)
+              prev_added=$(echo "$prev_svg_oneline" | sed -n 's/.*(+\([0-9][0-9]*\) \/ -\([0-9][0-9]*\)).*/\1/p' | head -n1)
+              prev_deleted=$(echo "$prev_svg_oneline" | sed -n 's/.*(+\([0-9][0-9]*\) \/ -\([0-9][0-9]*\)).*/\2/p' | head -n1)
+            fi
+          }
+
+          read_previous_totals
+
+          if [ -z "${ALL_REPOS_PAT:-}" ]; then
+            echo "ALL_REPOS_PAT not set. Using repo-only stats."
+            fallback_repo_only
+            exit 0
+          fi
+
+          total_added=0
+          total_deleted=0
+          repo_count=0
+          missing_stats=0
+          page=1
+
+          while :; do
+            repos_json=$(curl -sS \
+              -H "Authorization: Bearer ${ALL_REPOS_PAT}" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/user/repos?visibility=all&affiliation=owner&per_page=100&page=${page}")
+
+            count=$(echo "$repos_json" | jq 'length')
+            if [ "$count" -eq 0 ]; then
+              break
+            fi
+
+            while IFS= read -r repo; do
+              [ -z "$repo" ] && continue
+              # Use local git history for the current repository for fresher values.
+              # /stats/contributors can lag for days and causes visible staleness.
+              if [ "${repo}" = "${GITHUB_REPOSITORY}" ]; then
+                continue
+              fi
+              repo_count=$((repo_count + 1))
+
+              data=""
+              for attempt in 1 2 3 4 5 6; do
+                code_and_body=$(mktemp)
+                status=$(curl -sS -o "$code_and_body" -w "%{http_code}" \
+                  -H "Authorization: Bearer ${ALL_REPOS_PAT}" \
+                  -H "Accept: application/vnd.github+json" \
+                  "https://api.github.com/repos/${repo}/stats/contributors")
+
+                if [ "$status" = "202" ]; then
+                  rm -f "$code_and_body"
+                  sleep 2
+                  continue
+                fi
+
+                if [ "$status" = "200" ]; then
+                  data=$(cat "$code_and_body")
+                fi
+                rm -f "$code_and_body"
+                break
+              done
+
+              if [ -n "$data" ]; then
+                repo_added=$(echo "$data" | jq --arg u "$GH_USER" '[.[] | select(.author.login == $u) | .weeks[]? | .a] | add // 0')
+                repo_deleted=$(echo "$data" | jq --arg u "$GH_USER" '[.[] | select(.author.login == $u) | .weeks[]? | .d] | add // 0')
+                total_added=$((total_added + repo_added))
+                total_deleted=$((total_deleted + repo_deleted))
+              else
+                missing_stats=$((missing_stats + 1))
+              fi
+            done < <(echo "$repos_json" | jq -r '.[].full_name')
+
+            page=$((page + 1))
+          done
+
+          read -r local_added local_deleted local_changed <<< "$(current_repo_totals)"
+          total_added=$((total_added + local_added))
+          total_deleted=$((total_deleted + local_deleted))
+          total_changed=$((total_added + total_deleted))
+          echo "Processed repos via API: ${repo_count}; repos with unavailable stats: ${missing_stats}"
+          echo "Current repo (${GITHUB_REPOSITORY}) local totals: +${local_added} / -${local_deleted}"
+
+          # Keep the card monotonic. GitHub stats endpoints can return partial data (202),
+          # which otherwise causes visible drops between runs.
+          if [ -n "${prev_changed:-}" ] && [ "$total_changed" -lt "$prev_changed" ]; then
+            echo "Current total (${total_changed}) is lower than previous (${prev_changed}); keeping previous totals."
+            total_changed="$prev_changed"
+            if [ -n "${prev_added:-}" ] && [ -n "${prev_deleted:-}" ]; then
+              total_added="$prev_added"
+              total_deleted="$prev_deleted"
+            fi
+          fi
+
+          subtitle="Total Lines Of Code Changed (Public + Private Repo)"
+          write_svg "Code Change Stats" "$subtitle" "$total_changed" "$total_added" "$total_deleted"
+
+      - name: Generate streak snapshot card
+        env:
+          GH_USER: proxy-cmd
+          ALL_REPOS_PAT: ${{ secrets.ALL_REPOS_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+
+          auth_token="${ALL_REPOS_PAT:-${GITHUB_TOKEN:-}}"
+          if [ -z "${auth_token}" ]; then
+            echo "Missing token for streak generation"
+            exit 1
+          fi
+
+          api_get() {
+            local url="$1"
+            curl -fsSL \
+              -H "Authorization: Bearer ${auth_token}" \
+              -H "Accept: application/vnd.github+json" \
+              "$url"
+          }
+
+          # Keep total contributions aligned with GitHub contribution calendar.
+          upstream_svg=$(curl -fsSL "https://streak-stats.demolab.com?user=${GH_USER}&theme=tokyonight&hide_border=true&v=$(date +%s)")
+          total_contributions=$(printf "%s" "$upstream_svg" | perl -0ne 'print "$1\n" if /<!-- Total Contributions big number -->.*?<text[^>]*>\s*([0-9]+)\s*<\/text>/s')
+          total_range=$(printf "%s" "$upstream_svg" | perl -0ne 'print "$1\n" if /<!-- Total Contributions range -->.*?<text[^>]*>\s*([^<]+)\s*<\/text>/s')
+          if [ -z "${total_contributions:-}" ]; then
+            total_contributions=0
+          fi
+          if [ -z "${total_range:-}" ]; then
+            total_range="Dec 27, 2024 - Present"
+          fi
+          echo "$total_contributions" > dist/contrib-total.txt
+
+          repo_endpoint="https://api.github.com/users/${GH_USER}/repos?per_page=100&page="
+          if [ -n "${ALL_REPOS_PAT:-}" ]; then
+            repo_endpoint="https://api.github.com/user/repos?visibility=all&affiliation=owner&per_page=100&page="
+          fi
+
+          commit_days_file="dist/commit-days.tsv"
+          : > "$commit_days_file"
+          total_commits=0
+          page=1
+          since_date="2024-01-01T00:00:00Z"
+
+          while :; do
+            repos_json=$(api_get "${repo_endpoint}${page}")
+            repo_count=$(echo "$repos_json" | jq 'length')
+            if [ "$repo_count" -eq 0 ]; then
+              break
+            fi
+
+            while IFS= read -r repo; do
+              [ -z "$repo" ] && continue
+              commit_page=1
+              while :; do
+                commits_json=$(curl -sS \
+                  -H "Authorization: Bearer ${auth_token}" \
+                  -H "Accept: application/vnd.github+json" \
+                  "https://api.github.com/repos/${repo}/commits?author=${GH_USER}&since=${since_date}&per_page=100&page=${commit_page}")
+
+                # Empty/invalid/forbidden repos should just be skipped.
+                if ! echo "$commits_json" | jq -e 'type=="array"' >/dev/null 2>&1; then
+                  break
+                fi
+
+                ccount=$(echo "$commits_json" | jq 'length')
+                if [ "$ccount" -eq 0 ]; then
+                  break
+                fi
+
+                total_commits=$((total_commits + ccount))
+                echo "$commits_json" | jq -r '.[] | .commit.author.date // empty' | cut -c1-10 >> "$commit_days_file"
+                commit_page=$((commit_page + 1))
+              done
+            done < <(echo "$repos_json" | jq -r '.[].full_name')
+
+            page=$((page + 1))
+          done
+
+          if [ ! -s "$commit_days_file" ]; then
+            current_streak=0
+            longest_streak=0
+            current_range="-"
+            longest_range="-"
+          else
+            sort -u "$commit_days_file" -o "$commit_days_file"
+            streak_data=$(awk '
+              function ts(date, cmd, out) {
+                cmd = "date -u -d \"" date "\" +%s"
+                cmd | getline out
+                close(cmd)
+                return out
+              }
+              {
+                d=$1
+                t=ts(d)
+                if (NR==1) {
+                  cur=1; cur_start=d; cur_end=d
+                  max=1; max_start=d; max_end=d
+                } else {
+                  if ((t-prev_t)==86400) {
+                    cur++
+                    cur_end=d
+                  } else {
+                    cur=1
+                    cur_start=d
+                    cur_end=d
+                  }
+                  if (cur>max) {
+                    max=cur
+                    max_start=cur_start
+                    max_end=cur_end
+                  }
+                }
+                prev_t=t
+              }
+              END {
+                if (NR==0) {
+                  print "0\t-\t-\t0\t-\t-"
+                } else {
+                  print cur "\t" cur_start "\t" cur_end "\t" max "\t" max_start "\t" max_end
+                }
+              }
+            ' "$commit_days_file")
+
+            current_streak=$(echo "$streak_data" | cut -f1)
+            cs=$(echo "$streak_data" | cut -f2)
+            ce=$(echo "$streak_data" | cut -f3)
+            longest_streak=$(echo "$streak_data" | cut -f4)
+            ls=$(echo "$streak_data" | cut -f5)
+            le=$(echo "$streak_data" | cut -f6)
+
+            if [ "$cs" = "$ce" ]; then
+              current_range=$(date -u -d "$ce" +"%b %-d")
+            else
+              current_range="$(date -u -d "$cs" +"%b %-d") - $(date -u -d "$ce" +"%b %-d")"
+            fi
+            if [ "$ls" = "$le" ]; then
+              longest_range=$(date -u -d "$le" +"%b %-d")
+            else
+              longest_range="$(date -u -d "$ls" +"%b %-d") - $(date -u -d "$le" +"%b %-d")"
+            fi
+          fi
+
+          cat > dist/streak-stats.svg <<EOF
+          <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 495 195' width='495' height='195' direction='ltr'>
+            <defs>
+              <clipPath id='outer_rectangle'>
+                <rect width='495' height='195' rx='4.5'/>
+              </clipPath>
+            </defs>
+            <g clip-path='url(#outer_rectangle)'>
+              <rect fill='#1A1B27' rx='4.5' x='0.5' y='0.5' width='494' height='194'/>
+              <line x1='165' y1='28' x2='165' y2='170' stroke-width='1' stroke='#E4E2E2'/>
+              <line x1='330' y1='28' x2='330' y2='170' stroke-width='1' stroke='#E4E2E2'/>
+              <!-- Total Contributions big number -->
+              <text x='82.5' y='80' text-anchor='middle' fill='#70A5FD' font-family='"Segoe UI", Ubuntu, sans-serif' font-weight='700' font-size='28'>${total_contributions}</text>
+              <text x='82.5' y='116' text-anchor='middle' fill='#70A5FD' font-family='"Segoe UI", Ubuntu, sans-serif' font-weight='400' font-size='14'>Total Contributions</text>
+              <!-- Total Contributions range -->
+              <text x='82.5' y='146' text-anchor='middle' fill='#38BDAE' font-family='"Segoe UI", Ubuntu, sans-serif' font-weight='400' font-size='12'>${total_range}</text>
+              <circle cx='247.5' cy='71' r='40' fill='none' stroke='#70A5FD' stroke-width='5'/>
+              <text x='247.5' y='84' text-anchor='middle' fill='#BF91F3' font-family='"Segoe UI", Ubuntu, sans-serif' font-weight='700' font-size='42'>${current_streak}</text>
+              <text x='247.5' y='140' text-anchor='middle' fill='#BF91F3' font-family='"Segoe UI", Ubuntu, sans-serif' font-weight='700' font-size='14'>Current Commit Streak</text>
+              <text x='247.5' y='165' text-anchor='middle' fill='#38BDAE' font-family='"Segoe UI", Ubuntu, sans-serif' font-weight='400' font-size='12'>${current_range}</text>
+              <text x='412.5' y='80' text-anchor='middle' fill='#70A5FD' font-family='"Segoe UI", Ubuntu, sans-serif' font-weight='700' font-size='42'>${longest_streak}</text>
+              <text x='412.5' y='116' text-anchor='middle' fill='#70A5FD' font-family='"Segoe UI", Ubuntu, sans-serif' font-weight='400' font-size='14'>Longest Commit Streak</text>
+              <text x='412.5' y='146' text-anchor='middle' fill='#38BDAE' font-family='"Segoe UI", Ubuntu, sans-serif' font-weight='400' font-size='12'>${longest_range}</text>
+            </g>
+          </svg>
+          EOF
+
+      - name: Generate language mix card
+        env:
+          GH_USER: proxy-cmd
+          ALL_REPOS_PAT: ${{ secrets.ALL_REPOS_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+
+          auth_token="${ALL_REPOS_PAT:-${GITHUB_TOKEN:-}}"
+
+          api_get() {
+            local url="$1"
+            if [ -n "${auth_token:-}" ]; then
+              curl -fsSL \
+                -H "Authorization: Bearer ${auth_token}" \
+                -H "Accept: application/vnd.github+json" \
+                "$url"
+            else
+              curl -fsSL \
+                -H "Accept: application/vnd.github+json" \
+                "$url"
+            fi
+          }
+
+          repo_endpoint="https://api.github.com/users/${GH_USER}/repos?per_page=100&page="
+          if [ -n "${ALL_REPOS_PAT:-}" ]; then
+            repo_endpoint="https://api.github.com/user/repos?visibility=all&affiliation=owner&per_page=100&page="
+          fi
+
+          lang_pairs=$(mktemp)
+          page=1
+
+          while :; do
+            repos_json=$(api_get "${repo_endpoint}${page}")
+            count=$(echo "$repos_json" | jq 'length')
+            if [ "$count" -eq 0 ]; then
+              break
+            fi
+
+            while IFS= read -r repo; do
+              [ -z "$repo" ] && continue
+              langs=$(api_get "https://api.github.com/repos/${repo}/languages" || echo "{}")
+              echo "$langs" | jq -r 'to_entries[]? | "\(.key)\t\(.value)"' >> "$lang_pairs"
+            done < <(echo "$repos_json" | jq -r '.[].full_name')
+
+            page=$((page + 1))
+          done
+
+          if [ ! -s "$lang_pairs" ]; then
+            cat > dist/language-mix.svg <<'EOF'
+          <svg width="820" height="220" viewBox="0 0 820 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Language mix">
+            <rect width="820" height="220" rx="12" fill="#1A1B27"/>
+            <text x="28" y="48" fill="#70A5FD" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">Language Mix</text>
+            <text x="28" y="92" fill="#8b949e" font-family="Segoe UI, Arial, sans-serif" font-size="14">No language data found yet.</text>
+          </svg>
+          EOF
+            rm -f "$lang_pairs"
+            exit 0
+          fi
+
+          lang_stats=$(awk -F '\t' '
+            { sum[$1] += $2; total += $2 }
+            END {
+              for (k in sum) {
+                pct = (total > 0) ? (sum[k] * 100 / total) : 0
+                printf "%s\t%.6f\t%d\n", k, pct, sum[k]
+              }
+            }
+          ' "$lang_pairs" | sort -k2,2nr | head -n 5)
+
+          total_pct=$(echo "$lang_stats" | awk -F '\t' '{s+=$2} END {if (s==0) print 1; else print s}')
+
+          color_for() {
+            case "$1" in
+              Python) echo "#3572A5" ;;
+              JavaScript) echo "#f1e05a" ;;
+              TypeScript) echo "#3178c6" ;;
+              Jupyter\ Notebook) echo "#DA5B0B" ;;
+              HTML) echo "#e34c26" ;;
+              CSS) echo "#563d7c" ;;
+              Shell) echo "#89e051" ;;
+              C) echo "#555555" ;;
+              C++) echo "#f34b7d" ;;
+              Java) echo "#b07219" ;;
+              Go) echo "#00ADD8" ;;
+              Rust) echo "#dea584" ;;
+              *) echo "#58a6ff" ;;
+            esac
+          }
+
+          bar_x=28
+          bar_y=80
+          bar_w=764
+          bar_h=12
+          cur_x=$bar_x
+
+          segments=""
+          labels=""
+          label_y1=132
+          label_y2=164
+          i=0
+
+          while IFS=$'\t' read -r lang pct bytes; do
+            [ -z "$lang" ] && continue
+            color=$(color_for "$lang")
+            seg_w=$(awk -v p="$pct" -v t="$total_pct" -v w="$bar_w" 'BEGIN { printf "%.3f", (p/t)*w }')
+            labels_pct=$(awk -v p="$pct" 'BEGIN { printf "%.2f", p }')
+
+            segments="${segments}<rect x=\"${cur_x}\" y=\"${bar_y}\" width=\"${seg_w}\" height=\"${bar_h}\" fill=\"${color}\" rx=\"6\" />"
+
+            if [ "$i" -lt 3 ]; then
+              lx=$(awk -v base="28" -v idx="$i" 'BEGIN { printf "%.0f", base + (idx * 250) }')
+              labels="${labels}<circle cx=\"${lx}\" cy=\"${label_y1}\" r=\"8\" fill=\"${color}\" />"
+              ly1=$((label_y1 + 5))
+              labels="${labels}<text x=\"$(($lx + 14))\" y=\"${ly1}\" fill=\"#38BDAE\" font-family=\"Segoe UI, Arial, sans-serif\" font-size=\"14\">${lang} ${labels_pct}%</text>"
+            else
+              j=$((i - 3))
+              lx=$(awk -v base="28" -v idx="$j" 'BEGIN { printf "%.0f", base + (idx * 250) }')
+              labels="${labels}<circle cx=\"${lx}\" cy=\"${label_y2}\" r=\"8\" fill=\"${color}\" />"
+              ly2=$((label_y2 + 5))
+              labels="${labels}<text x=\"$(($lx + 14))\" y=\"${ly2}\" fill=\"#38BDAE\" font-family=\"Segoe UI, Arial, sans-serif\" font-size=\"14\">${lang} ${labels_pct}%</text>"
+            fi
+
+            cur_x=$(awk -v x="$cur_x" -v w="$seg_w" 'BEGIN { printf "%.3f", x+w }')
+            i=$((i + 1))
+          done <<< "$lang_stats"
+
+          cat > dist/language-mix.svg <<EOF
+          <svg width="820" height="220" viewBox="0 0 820 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Most used languages">
+            <rect width="820" height="220" rx="12" fill="#1A1B27"/>
+            <text x="28" y="48" fill="#70A5FD" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">Most Used Languages</text>
+            <rect x="${bar_x}" y="${bar_y}" width="${bar_w}" height="${bar_h}" fill="#2b3440" rx="6"/>
+            ${segments}
+            ${labels}
+          </svg>
+          EOF
+
+          rm -f "$lang_pairs"
+
+      - name: Generate profile signal card
+        env:
+          GH_USER: proxy-cmd
+          ALL_REPOS_PAT: ${{ secrets.ALL_REPOS_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+
+          auth_token="${ALL_REPOS_PAT:-${GITHUB_TOKEN:-}}"
+
+          api_get() {
+            local url="$1"
+            if [ -n "${auth_token:-}" ]; then
+              curl -fsSL \
+                -H "Authorization: Bearer ${auth_token}" \
+                -H "Accept: application/vnd.github+json" \
+                "$url"
+            else
+              curl -fsSL \
+                -H "Accept: application/vnd.github+json" \
+                "$url"
+            fi
+          }
+
+          repo_endpoint="https://api.github.com/users/${GH_USER}/repos?per_page=100&page="
+          if [ -n "${ALL_REPOS_PAT:-}" ]; then
+            repo_endpoint="https://api.github.com/user/repos?visibility=all&affiliation=owner&per_page=100&page="
+          fi
+
+          repo_count=0
+          star_count=0
+          fork_count=0
+          page=1
+
+          while :; do
+            repos_json=$(api_get "${repo_endpoint}${page}")
+            count=$(echo "$repos_json" | jq 'length')
+            if [ "$count" -eq 0 ]; then
+              break
+            fi
+
+            repo_count=$((repo_count + count))
+            page_stars=$(echo "$repos_json" | jq '[.[] | select(.private == false) | .stargazers_count] | add // 0')
+            page_forks=$(echo "$repos_json" | jq '[.[].forks_count] | add // 0')
+            star_count=$((star_count + page_stars))
+            fork_count=$((fork_count + page_forks))
+            page=$((page + 1))
+          done
+
+          if [ -n "${ALL_REPOS_PAT:-}" ]; then
+            user_scope="user:${GH_USER}"
+          else
+            user_scope="user:${GH_USER}+is:public"
+          fi
+
+          total_issues=$(api_get "https://api.github.com/search/issues?q=author:${GH_USER}+type:issue+${user_scope}" | jq '.total_count // 0')
+          closed_issues=$(api_get "https://api.github.com/search/issues?q=author:${GH_USER}+type:issue+state:closed+${user_scope}" | jq '.total_count // 0')
+
+          if [ -f dist/streak-stats.svg ]; then
+            streak_svg=$(cat dist/streak-stats.svg)
+          else
+            streak_svg=$(curl -fsSL "https://streak-stats.demolab.com?user=${GH_USER}&theme=tokyonight&hide_border=true&v=$(date +%s)")
+          fi
+          contributions=$(printf "%s" "$streak_svg" | perl -0ne 'print "$1\n" if /<!-- Total Contributions big number -->.*?<text[^>]*>\s*([0-9]+)\s*<\/text>/s')
+          if [ -z "${contributions:-}" ]; then
+            contributions=0
+          fi
+
+          cat > dist/profile-signal.svg <<EOF
+          <svg width="900" height="400" viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Profile signal board">
+            <defs>
+              <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#0b1320"/>
+                <stop offset="100%" stop-color="#0d1117"/>
+              </linearGradient>
+              <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#00d9ff"/>
+                <stop offset="100%" stop-color="#1f6feb"/>
+              </linearGradient>
+            </defs>
+
+            <rect x="1" y="1" width="898" height="398" rx="14" fill="url(#bg)" stroke="#2b3440"/>
+            <rect x="1" y="1" width="898" height="58" rx="14" fill="#0f1828" stroke="#2b3440"/>
+            <text x="26" y="37" fill="#00d9ff" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="0.8">PROFILE SIGNAL BOARD</text>
+            <text x="696" y="37" fill="#7d8590" font-family="Segoe UI, Arial, sans-serif" font-size="12">LIVE SNAPSHOT</text>
+
+            <line x1="26" y1="106" x2="874" y2="106" stroke="url(#line)" stroke-width="1.2" opacity="0.45"/>
+            <line x1="530" y1="120" x2="530" y2="368" stroke="#2b3440" stroke-width="1"/>
+
+            <circle cx="54" cy="142" r="6" fill="#3fb950">
+              <animate attributeName="opacity" values="1;0.25;1" dur="1.2s" repeatCount="indefinite"/>
+            </circle>
+            <text x="74" y="147" fill="#3fb950" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700">ONLINE</text>
+
+            <text x="36" y="218" fill="#e6edf3" font-family="Segoe UI, Arial, sans-serif" font-size="56" font-weight="700">Ujjwal Sharma</text>
+            <text x="36" y="258" fill="#58a6ff" font-family="Segoe UI, Arial, sans-serif" font-size="24">AI | ML Student | Computer Vision Enthusiast</text>
+            <text x="36" y="294" fill="#8b949e" font-family="Segoe UI, Arial, sans-serif" font-size="17">Build mode: shipping, debugging, improving</text>
+
+            <text x="562" y="150" fill="#58a6ff" font-family="Segoe UI, Arial, sans-serif" font-size="21">Total Repo</text>
+            <text x="850" y="150" text-anchor="end" fill="#e6edf3" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">${repo_count}</text>
+            <line x1="552" y1="160" x2="860" y2="160" stroke="#2b3440" stroke-width="1" opacity="0.45"/>
+
+            <text x="562" y="192" fill="#58a6ff" font-family="Segoe UI, Arial, sans-serif" font-size="21">Star Count</text>
+            <text x="850" y="192" text-anchor="end" fill="#e6edf3" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">${star_count}</text>
+            <line x1="552" y1="202" x2="860" y2="202" stroke="#2b3440" stroke-width="1" opacity="0.45"/>
+
+            <text x="562" y="234" fill="#58a6ff" font-family="Segoe UI, Arial, sans-serif" font-size="21">Fork Count</text>
+            <text x="850" y="234" text-anchor="end" fill="#e6edf3" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">${fork_count}</text>
+            <line x1="552" y1="244" x2="860" y2="244" stroke="#2b3440" stroke-width="1" opacity="0.45"/>
+
+            <text x="562" y="276" fill="#58a6ff" font-family="Segoe UI, Arial, sans-serif" font-size="21">Contributions</text>
+            <text x="850" y="276" text-anchor="end" fill="#e6edf3" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">${contributions}</text>
+            <line x1="552" y1="286" x2="860" y2="286" stroke="#2b3440" stroke-width="1" opacity="0.45"/>
+
+            <text x="562" y="318" fill="#58a6ff" font-family="Segoe UI, Arial, sans-serif" font-size="21">Total Issues</text>
+            <text x="850" y="318" text-anchor="end" fill="#e6edf3" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">${total_issues}</text>
+            <line x1="552" y1="328" x2="860" y2="328" stroke="#2b3440" stroke-width="1" opacity="0.45"/>
+
+            <text x="562" y="360" fill="#58a6ff" font-family="Segoe UI, Arial, sans-serif" font-size="21">Closed Issues</text>
+            <text x="850" y="360" text-anchor="end" fill="#e6edf3" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">${closed_issues}</text>
+          </svg>
+          EOF
+
+      - name: Deploy to output branch
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
