@@ -24,20 +24,20 @@ jobs:
       - name: Generate pacman animation
         uses: abozanona/pacman-contribution-graph@main
         with:
-          github_user_name: proxy-cmd
+          github_user_name: vibhu-4444
           github_token: ${{ secrets.ALL_REPOS_PAT }}
 
       - name: Generate snake animation
         uses: Platane/snk@v3
         with:
-          github_user_name: proxy-cmd
+          github_user_name: vibhu-4444
           outputs: |
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
 
       - name: Generate lines changed card
         env:
-          GH_USER: proxy-cmd
+          GH_USER: vibhu-4444
           ALL_REPOS_PAT: ${{ secrets.ALL_REPOS_PAT }}
         run: |
           set -euo pipefail
@@ -183,7 +183,7 @@ jobs:
 
       - name: Generate streak snapshot card
         env:
-          GH_USER: proxy-cmd
+          GH_USER: vibhu-4444
           ALL_REPOS_PAT: ${{ secrets.ALL_REPOS_PAT }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -356,7 +356,7 @@ jobs:
 
       - name: Generate language mix card
         env:
-          GH_USER: proxy-cmd
+          GH_USER: vibhu-4444
           ALL_REPOS_PAT: ${{ secrets.ALL_REPOS_PAT }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -496,7 +496,7 @@ jobs:
 
       - name: Generate profile signal card
         env:
-          GH_USER: proxy-cmd
+          GH_USER: vibhu-4444
           ALL_REPOS_PAT: ${{ secrets.ALL_REPOS_PAT }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
