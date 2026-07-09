@@ -69,32 +69,10 @@ I am currently working on a live College ERP system while pursuing a BCA in AI a
 
 ---
 
-## 📡 Profile Signal Board
-
-<div align="center">
-  <img src="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/profile-signal.svg" alt="Profile Signal Board" />
-</div>
-
----
-
 ## 💻 Most Used Languages
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/language-mix.svg" alt="Most Used Languages" />
-</div>
-
----
-
-## 🐍 Contribution Snake
-
-<div align="center">
-
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/github-contribution-grid-snake-dark.svg" />
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/github-contribution-grid-snake.svg" />
-    <img alt="GitHub Contribution Snake" src="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/github-contribution-grid-snake.svg" />
-  </picture>
-
 </div>
 
 ---
