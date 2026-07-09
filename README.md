@@ -53,102 +53,75 @@ I am currently working on a live College ERP system while pursuing a BCA in AI a
 
 ---
 
-## What I Build
+## 📊 Code Change Stats
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/lines-changed.svg" alt="Lines of Code Changed" />
+</div>
+
+---
+
+## 🔥 Streak Stats
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/streak-stats.svg" alt="GitHub Streak Stats" />
+</div>
+
+---
+
+## 📡 Profile Signal Board
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/profile-signal.svg" alt="Profile Signal Board" />
+</div>
+
+---
+
+## 💻 Most Used Languages
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/language-mix.svg" alt="Most Used Languages" />
+</div>
+
+---
+
+## 🐍 Contribution Snake
 
 <div align="center">
 
-| Product Area | Focus |
-| --- | --- |
-| Frontend Interfaces | Responsive React screens, reusable components, clean layouts |
-| UI/UX Design | Wireframes, flows, Figma systems, user-centered decisions |
-| Full-Stack Features | MERN stack apps, REST APIs, MongoDB-backed workflows |
-| AI/ML Learning | Practical exploration of intelligent systems and data-driven products |
-| Developer Community | Campus learning, peer growth, and tech initiatives |
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/github-contribution-grid-snake-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/github-contribution-grid-snake.svg" />
+    <img alt="GitHub Contribution Snake" src="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/github-contribution-grid-snake.svg" />
+  </picture>
 
 </div>
 
 ---
 
-## Tech Toolkit
+## 👾 Pac-Man Contribution Graph
 
 <div align="center">
 
-  <img src="https://skillicons.dev/icons?i=js,html,css,cpp,react,tailwind,nodejs,express,mongodb,figma,git,github,vercel,vscode" alt="Tech stack icons" />
-
-</div>
-
-<br />
-
-<div align="center">
-
-| Category | Tools and Skills |
-| --- | --- |
-| Languages | JavaScript ES6+, HTML5, CSS3, C++ |
-| Frontend | React JS, Tailwind CSS, responsive design, component architecture |
-| Backend | Node.js, Express.js, REST APIs |
-| Database | MongoDB |
-| Design | UI/UX Design, Figma, product thinking |
-| Workflow | Git, GitHub, Vercel, VS Code |
-| Foundations | Cybersecurity, Data Analytics, Artificial Intelligence |
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/pacman-contribution-graph-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/pacman-contribution-graph.svg" />
+    <img alt="Pac-Man Contribution Graph" src="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/pacman-contribution-graph.svg" />
+  </picture>
 
 </div>
 
 ---
 
-## Experience and Work
-
-### Google Student Ambassador
-
-April 2026 - Present | India
-
+### 🏆 Google Student Ambassador
+**April 2026 - Present | India**
 Representing and supporting student developer culture through campus initiatives, learning sessions, and community-driven tech activities.
 
-### Live College ERP System
-
+### 🛠️ Live College ERP System
 Building an active ERP platform with a focus on usable interfaces, structured workflows, and reliable full-stack implementation.
 
 ---
 
-## GitHub Snapshot
-
 <div align="center">
-
-  <img src="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/lines-changed.svg" alt="Code Change Stats" />
-
-  <br />
-  <br />
-  <img height="170" src="https://github-readme-streak-stats.herokuapp.com?user=vibhu-4444&theme=tokyonight&hide_border=true" alt="GitHub streak" />
-
-  <br />
-  <br />
-
-</div>
-
----
-
-## Connect
-
-<div align="center">
-
-  <a href="mailto:ojaswikasteriya@gmail.com">
-    <img src="https://img.shields.io/badge/ojaswikasteriya%40gmail.com-Email-14B8A6?style=flat-square&logo=gmail&logoColor=white" alt="Email address" />
-  </a>
-  <a href="https://linkedin.com/in/ojaswikashtheriya">
-    <img src="https://img.shields.io/badge/linkedin.com%2Fin%2Fojaswikashtheriya-LinkedIn-2563EB?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn profile" />
-  </a>
-  <a href="https://portfolio-dun-beta-60.vercel.app">
-    <img src="https://img.shields.io/badge/portfolio-dun--beta--60.vercel.app-Portfolio-0F172A?style=flat-square&logo=vercel&logoColor=white" alt="Portfolio website" />
-  </a>
-
-  <br />
-  <br />
-
-</div>
-
----
-
-<div align="center">
-
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=115&section=footer&color=0:14B8A6,45:2563EB,100:0F172A" alt="Footer wave" />
-
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=100&color=0:0F172A,45:2563EB,100:14B8A6&section=footer" alt="Footer wave" />
 </div>
