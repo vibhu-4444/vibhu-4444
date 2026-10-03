@@ -1,105 +1,97 @@
 <div align="center">
-
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=190&color=0:0F172A,45:2563EB,100:14B8A6&text=Ojaswi%20Kashtheriya&fontColor=ffffff&fontSize=44&fontAlignY=36&desc=Frontend%20Developer%20%7C%20UI%2FUX%20Designer%20%7C%20MERN%20Stack%20Builder&descAlignY=58&descSize=16" alt="Ojaswi Kashtheriya banner" />
-
-  <br />
-
-  <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=600&size=22&duration=2600&pause=900&color=14B8A6&center=true&vCenter=true&width=720&lines=Building+clean+React+interfaces;Designing+smooth+product+experiences;Exploring+AI%2FML+and+full-stack+systems;Google+Student+Ambassador" alt="Typing intro" />
-
-  <br />
-  <br />
-
-  <a href="mailto:ojaswikasteriya@gmail.com">
-    <img src="https://img.shields.io/badge/Email-ojaswikasteriya%40gmail.com-14B8A6?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
-  </a>
-  <a href="https://linkedin.com/in/ojaswikashtheriya">
-    <img src="https://img.shields.io/badge/LinkedIn-Ojaswi%20Kashtheriya-2563EB?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
-  </a>
-  <a href="https://portfolio-dun-beta-60.vercel.app">
-    <img src="https://img.shields.io/badge/Portfolio-Live%20Site-0F172A?style=for-the-badge&logo=vercel&logoColor=white" alt="Portfolio" />
-  </a>
-
-</div>
-
----
-
-<div align="center">
-
-  <h3>Frontend Developer and UI/UX Designer focused on practical, polished, user-first web products.</h3>
-
+  <img src="https://avatars.githubusercontent.com/u/214882659?v=4" width="144" height="144" alt="GitHub avatar for Ojaswi Kashtheriya" />
+  <h1>Ojaswi Kashtheriya</h1>
+  <p><strong>BCA · Artificial Intelligence &amp; Machine Learning · Second year</strong></p>
+  <p>Building practical AI/ML projects and learning by shipping.</p>
   <p>
-    React JS | Tailwind CSS | MERN Stack | Figma | AI/ML | Hackathons | Developer Community
+    <a href="https://github.com/vibhu-4444"><img src="https://img.shields.io/badge/GitHub-vibhu--4444-111111?style=flat-square&amp;logo=github" alt="GitHub profile" /></a>
+    <img src="https://komarev.com/ghpvc/?username=vibhu-4444&amp;label=profile%20views&amp;color=39d353&amp;style=flat-square" alt="Profile views" />
   </p>
-
 </div>
 
 ---
 
-## Ojaswi at a Glance
+## `~/ whoami`
 
-```txt
-Role          Frontend Developer and UI/UX Designer
-Stack         React JS, Tailwind CSS, Node.js, Express.js, MongoDB
-Education     BCA in Artificial Intelligence and Machine Learning
-College       Roorkee College of Engineering
-Current Work  Live College ERP System
-Community     Google Student Ambassador
-Hackathons    4 national hackathons
+```text
+$ cat about.txt
+
+Hi, I'm Ojaswi, a second-year BCA student focused on Artificial Intelligence and Machine Learning.
+I enjoy exploring computer vision, generative AI, data, and full-stack AI products.
+
+Based in India.
+Learning by building useful software, one project at a time.
 ```
 
-I build interfaces that feel clear, fast, and intentional. My work sits at the intersection of frontend engineering and product design, where clean components, strong visual hierarchy, and thoughtful user flows matter as much as the code behind them.
-
-I am currently working on a live College ERP system while pursuing a BCA in AI and Machine Learning. I also enjoy hackathons, community work, and building projects that turn rough ideas into usable digital products.
-
----
-
-## 📊 Code Change Stats
+## `~/ toolbox`
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/lines-changed.svg" alt="Lines of Code Changed" />
+  <p><strong>Languages &amp; data</strong></p>
+  <img src="https://skillicons.dev/icons?i=python,cpp,c,js,ts,sql,bash&amp;perline=7" alt="Python, C++, C, JavaScript, TypeScript, SQL, and Bash" />
+  <p><strong>AI / ML</strong></p>
+  <img src="https://skillicons.dev/icons?i=pytorch,tensorflow,opencv,sklearn&amp;perline=7" alt="PyTorch, TensorFlow, OpenCV, and scikit-learn" />
+  <p><strong>Web &amp; tools</strong></p>
+  <img src="https://skillicons.dev/icons?i=react,nextjs,nodejs,express,tailwind,vite,git,github,vscode,docker,postgres,supabase,figma&amp;perline=7" alt="React, Next.js, Node.js, Express, Tailwind, Vite, Git, GitHub, VS Code, Docker, PostgreSQL, Supabase, and Figma" />
 </div>
 
----
+## `~/ focus maps`
 
-## 🔥 Streak Stats
+These custom radars show areas I’m exploring and building in. Their shapes are illustrative and do not represent measured proficiency.
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/streak-stats.svg" alt="GitHub Streak Stats" />
+  <img src="./assets/skill-radar.svg" width="100%" alt="Illustrative AI and engineering learning focus map" />
+  <img src="./assets/language-radar.svg" width="100%" alt="Illustrative development learning focus map" />
 </div>
 
----
-
-## 💻 Most Used Languages
+## `~/ github analytics`
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/language-mix.svg" alt="Most Used Languages" />
+  <img src="https://github-readme-stats.vercel.app/api?username=vibhu-4444&amp;show_icons=true&amp;hide_border=true&amp;bg_color=00000000&amp;title_color=ffffff&amp;text_color=9ca3af&amp;icon_color=39d353" width="49%" alt="GitHub statistics for vibhu-4444" />
+  <img src="https://streak-stats.demolab.com?user=vibhu-4444&amp;hide_border=true&amp;background=00000000&amp;ring=39d353&amp;fire=39d353&amp;currStreakLabel=ffffff&amp;sideLabels=9ca3af&amp;dates=6b7280&amp;currStreakNum=ffffff&amp;sideNums=ffffff" width="49%" alt="GitHub contribution streak for vibhu-4444" />
+</div>
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=vibhu-4444&amp;layout=compact&amp;hide_border=true&amp;bg_color=00000000&amp;title_color=ffffff&amp;text_color=9ca3af&amp;langs_count=8" width="49%" alt="Most used programming languages on public repositories" />
+  <a href="https://github.com/vibhu-4444/Brakshaa"><img src="https://github-readme-stats.vercel.app/api/pin/?username=vibhu-4444&amp;repo=Brakshaa&amp;hide_border=true&amp;bg_color=00000000&amp;title_color=ffffff&amp;text_color=9ca3af&amp;icon_color=39d353" width="49%" alt="Brakshaa project repository" /></a>
 </div>
 
----
+## `~/ projects`
 
-## 👾 Pac-Man Contribution Graph
+### [Brakshaa — AI-powered smart farming ecosystem](https://github.com/vibhu-4444/Brakshaa)
+
+Project direction: plant disease detection, crop recommendations, smart reminders, and agricultural decision support.
+
+### [Hybrid AI-NWP multi-model forecast blending](https://github.com/vibhu-4444/Hybrid-ai-nwp-forecast-blending)
+
+Exploring AI/ML with Numerical Weather Prediction and multi-model forecast fusion.
+
+### [Geospatial AI dashboard](https://github.com/vibhu-4444/Map-Project)
+
+Full-stack geospatial visualization with machine-learning integration.
+
+## `~/ contribution universe`
 
 <div align="center">
+  <img src="./profile-3d-contrib/profile-green-animate.svg" width="100%" alt="Generated 3D GitHub contribution calendar" />
+</div>
 
+## `~/ contribution snake`
+
+<div align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/pacman-contribution-graph-dark.svg" />
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/pacman-contribution-graph.svg" />
-    <img alt="Pac-Man Contribution Graph" src="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/pacman-contribution-graph.svg" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/github-snake-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/github-snake.svg" />
+    <img src="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/github-snake.svg" width="100%" alt="Generated GitHub contribution snake" />
   </picture>
-
 </div>
 
----
+## `~/ currently`
 
-### 🏆 Google Student Ambassador
-**April 2026 - Present | India**
-Representing and supporting student developer culture through campus initiatives, learning sessions, and community-driven tech activities.
-
-### 🛠️ Live College ERP System
-Building an active ERP platform with a focus on usable interfaces, structured workflows, and reliable full-stack implementation.
-
----
+```text
+Learning: machine learning · deep learning · generative AI · computer vision
+Building: practical AI/ML and full-stack project ideas
+```
 
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=100&color=0:0F172A,45:2563EB,100:14B8A6&section=footer" alt="Footer wave" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&amp;height=90&amp;section=footer&amp;color=0:000000,100:111111" width="100%" alt="Minimal dark footer" />
+  <sub>Built with Markdown, SVG, and curiosity.</sub>
 </div>
