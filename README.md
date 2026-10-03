@@ -1,12 +1,13 @@
-<div align="center">
+﻿<div align="center">
   <img src="https://avatars.githubusercontent.com/u/214882659?v=4" width="144" height="144" alt="GitHub avatar for Ojaswi Kashtheriya" />
   <h1>Ojaswi Kashtheriya</h1>
-  <p><strong>BCA · Artificial Intelligence &amp; Machine Learning · Second year</strong></p>
-  <p>Building practical AI/ML projects and learning by shipping.</p>
+  <p><strong>BCA (Artificial Intelligence &amp; Machine Learning) · Frontend Developer</strong></p>
   <p>
-    <a href="https://github.com/vibhu-4444"><img src="https://img.shields.io/badge/GitHub-vibhu--4444-111111?style=flat-square&amp;logo=github" alt="GitHub profile" /></a>
-    <img src="https://komarev.com/ghpvc/?username=vibhu-4444&amp;label=profile%20views&amp;color=39d353&amp;style=flat-square" alt="Profile views" />
+    <a href="mailto:ojaswikasteriya@gmail.com">Email</a> ·
+    <a href="https://www.linkedin.com/in/ojaswi-kashtheriya">LinkedIn</a> ·
+    <a href="https://github.com/vibhu-4444">GitHub</a>
   </p>
+  <img src="https://komarev.com/ghpvc/?username=vibhu-4444&amp;label=profile%20views&amp;color=39d353&amp;style=flat-square" alt="Profile views" />
 </div>
 
 ---
@@ -14,34 +15,57 @@
 ## `~/ whoami`
 
 ```text
-$ cat about.txt
-
-Hi, I'm Ojaswi, a second-year BCA student focused on Artificial Intelligence and Machine Learning.
-I enjoy exploring computer vision, generative AI, data, and full-stack AI products.
-
-Based in India.
-Learning by building useful software, one project at a time.
+BCA student in Artificial Intelligence and Machine Learning at Haridwar University.
+Frontend developer with experience building React interfaces, REST API integrations, and MERN features.
+Expected graduation: June 2028 · Aggregate: 73%
 ```
 
-## `~/ toolbox`
+## `~/ experience`
+
+### Frontend Developer Intern · College ERP System
+**Haridwar University · Remote · Feb 2026 - Present**
+
+- Built reusable React components with Tailwind CSS and integrated them with REST APIs.
+- Improved responsive layouts and cross-device usability.
+
+### MERN Stack Intern
+**Maincrafts Technology · Remote · Mar 2026 - Apr 2026**
+
+- Built full-stack MERN features and REST APIs connected to React frontends.
+- Worked with senior developers to debug, test, and deploy application features.
+
+## `~/ technical skills`
 
 <div align="center">
-  <p><strong>Languages &amp; data</strong></p>
-  <img src="https://skillicons.dev/icons?i=python,cpp,c,js,ts,sql,bash&amp;perline=7" alt="Python, C++, C, JavaScript, TypeScript, SQL, and Bash" />
-  <p><strong>AI / ML</strong></p>
-  <img src="https://skillicons.dev/icons?i=pytorch,tensorflow,opencv,sklearn&amp;perline=7" alt="PyTorch, TensorFlow, OpenCV, and scikit-learn" />
-  <p><strong>Web &amp; tools</strong></p>
-  <img src="https://skillicons.dev/icons?i=react,nextjs,nodejs,express,tailwind,vite,git,github,vscode,docker,postgres,supabase,figma&amp;perline=7" alt="React, Next.js, Node.js, Express, Tailwind, Vite, Git, GitHub, VS Code, Docker, PostgreSQL, Supabase, and Figma" />
+  <img src="https://skillicons.dev/icons?i=javascript,typescript,python,react,nextjs,nodejs,express,html,css,tailwind,radix,framer,mongodb,postgres,prisma,vite,vitest,playwright,docker,git,github&amp;perline=7" alt="JavaScript, TypeScript, Python, React, Next.js, Node.js, Express, HTML, CSS, Tailwind CSS, Radix UI, Framer Motion, MongoDB, PostgreSQL, Prisma, Vite, Vitest, Playwright, Docker, Git, and GitHub" />
 </div>
 
-## `~/ focus maps`
+- **Languages:** JavaScript, TypeScript, Python
+- **Frontend:** React.js, Next.js, HTML5, CSS3, Tailwind CSS, Radix UI, Framer Motion
+- **Backend &amp; data:** Node.js, Express.js, PostgreSQL, MongoDB, Prisma ORM
+- **Tools:** Git, GitHub, Vite, Vitest, Playwright, Docker, REST APIs
 
-These custom radars show areas I’m exploring and building in. Their shapes are illustrative and do not represent measured proficiency.
+## `~/ selected projects`
 
-<div align="center">
-  <img src="./assets/skill-radar.svg" width="100%" alt="Illustrative AI and engineering learning focus map" />
-  <img src="./assets/language-radar.svg" width="100%" alt="Illustrative development learning focus map" />
-</div>
+### [REVIVE · Revenue Recovery &amp; Payment Operations Platform](https://github.com/vibhu-4444/REVIVE-Revenue-Recovery-Payment-Operations-Platform)
+**React · TypeScript · Vite · Tailwind CSS · Vitest**
+
+Built a domain-driven payment operations platform with reusable components across 15 dashboard views. Added a configurable policy engine, recovery recommendations, provider integrations, and unit and integration tests.
+
+### [VaultIQ · Personal Finance Dashboard](https://github.com/vibhu-4444/VaultIQ)
+**Next.js · TypeScript · Prisma · NextAuth · Zustand · Recharts**
+
+Built a personal finance dashboard and reusable UI library. Added authentication, protected routes, state management, and data visualizations.
+
+### [Synthetica · AI Research Workspace](https://github.com/vibhu-4444/Zorvia-LM)
+**Next.js · TypeScript · Radix UI · TanStack Query · Zustand · Framer Motion**
+
+Developed a three-panel research workspace with chat, notes, and studio views, plus document ingestion, retrieval, and citation-grounded chat.
+
+### [Aurora · Music Platform](https://github.com/vibhu-4444/Aurora-Music)
+**React · TypeScript · Next.js · Playwright · Docker**
+
+Architected a TypeScript monorepo with web, API, and worker apps. Built music player and vault components with a background audio extraction worker.
 
 ## `~/ github analytics`
 
@@ -51,45 +75,21 @@ These custom radars show areas I’m exploring and building in. Their shapes are
 </div>
 <div align="center">
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=vibhu-4444&amp;layout=compact&amp;hide_border=true&amp;bg_color=00000000&amp;title_color=ffffff&amp;text_color=9ca3af&amp;langs_count=8" width="49%" alt="Most used programming languages on public repositories" />
-  <a href="https://github.com/vibhu-4444/Brakshaa"><img src="https://github-readme-stats.vercel.app/api/pin/?username=vibhu-4444&amp;repo=Brakshaa&amp;hide_border=true&amp;bg_color=00000000&amp;title_color=ffffff&amp;text_color=9ca3af&amp;icon_color=39d353" width="49%" alt="Brakshaa project repository" /></a>
+  <a href="https://github.com/vibhu-4444/REVIVE-Revenue-Recovery-Payment-Operations-Platform"><img src="https://github-readme-stats.vercel.app/api/pin/?username=vibhu-4444&amp;repo=REVIVE-Revenue-Recovery-Payment-Operations-Platform&amp;hide_border=true&amp;bg_color=00000000&amp;title_color=ffffff&amp;text_color=9ca3af&amp;icon_color=39d353" width="49%" alt="REVIVE project repository" /></a>
 </div>
 
-## `~/ projects`
-
-### [Brakshaa — AI-powered smart farming ecosystem](https://github.com/vibhu-4444/Brakshaa)
-
-Project direction: plant disease detection, crop recommendations, smart reminders, and agricultural decision support.
-
-### [Hybrid AI-NWP multi-model forecast blending](https://github.com/vibhu-4444/Hybrid-ai-nwp-forecast-blending)
-
-Exploring AI/ML with Numerical Weather Prediction and multi-model forecast fusion.
-
-### [Geospatial AI dashboard](https://github.com/vibhu-4444/Map-Project)
-
-Full-stack geospatial visualization with machine-learning integration.
-
-## `~/ contribution universe`
+## `~/ contributions`
 
 <div align="center">
-  <img src="./profile-3d-contrib/profile-green-animate.svg" width="100%" alt="Generated 3D GitHub contribution calendar" />
+  <img src="./assets/contributions.svg" width="100%" alt="Ojaswi's GitHub contributions by year" />
 </div>
 
-## `~/ contribution snake`
+## `~/ recognition`
 
-<div align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/github-snake-dark.svg" />
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/github-snake.svg" />
-    <img src="https://raw.githubusercontent.com/vibhu-4444/vibhu-4444/output/github-snake.svg" width="100%" alt="Generated GitHub contribution snake" />
-  </picture>
-</div>
+### Google Student Ambassador · Google India
+**Apr 2026 - Present**
 
-## `~/ currently`
-
-```text
-Learning: machine learning · deep learning · generative AI · computer vision
-Building: practical AI/ML and full-stack project ideas
-```
+Selected to represent Google's developer community on campus, organize technical workshops, and promote developer programs.
 
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&amp;height=90&amp;section=footer&amp;color=0:000000,100:111111" width="100%" alt="Minimal dark footer" />

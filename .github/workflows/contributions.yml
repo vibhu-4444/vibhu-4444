@@ -1,38 +1,35 @@
-name: GitHub Profile 3D Contribution
+name: Update contribution graph
 
 on:
   push:
     branches:
       - main
   schedule:
-    - cron: "0 18 * * *"
+    - cron: "23 0 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  build:
+  generate:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - name: Check out profile repository
         uses: actions/checkout@v5
 
-      - name: Generate contribution calendar
-        uses: yoshi389111/github-profile-3d-contrib@v0.9.3
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          USERNAME: ${{ github.repository_owner }}
+      - name: Generate contribution SVG
+        run: node scripts/generate-contributions.mjs
 
-      - name: Commit generated calendars
+      - name: Publish updated graph
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add profile-3d-contrib/
+          git add assets/contributions.svg
           if git diff --cached --quiet; then
-            echo "No generated calendar changes to commit."
+            echo "Contribution graph is already up to date."
             exit 0
           fi
-          git commit -m "Generate 3D contribution calendar"
+          git commit -m "Update contribution graph"
           git push

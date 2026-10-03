@@ -1,18 +1,11 @@
 ﻿# Profile README setup
 
-This is the profile repository for `vibhu-4444`. Keep the README, SVG assets, and workflow paths in their current locations.
+This is the profile repository for `vibhu-4444`. The README uses the resume supplied on October 3, 2026 as the source for contact links, education, experience, projects, technical skills, and recognition.
 
-## Contribution graphics
+## Contribution graph
 
-Both workflows run on a schedule and can be started manually from the repository's **Actions** tab.
+`assets/contributions.svg` is generated from the public contribution data for `vibhu-4444` by `scripts/generate-contributions.mjs`. The chart uses a dark, yearly calendar layout and updates daily through `.github/workflows/contributions.yml`.
 
-- **Contribution snake:** generates two SVGs with `Platane/snk/svg-only@v3` and publishes them to the `output` branch. The README loads those SVGs from that branch.
-- **3D contribution calendar:** generates SVGs in `profile-3d-contrib/` and commits changed files to the default branch. The README loads `profile-green-animate.svg` from that directory.
+The workflow runs on pushes to `main`, on a daily schedule, and manually from the **Actions** tab. It requests `contents: write` so it can commit an updated SVG. In GitHub, open **Settings > Actions > General > Workflow permissions** and enable **Read and write permissions** if repository policy does not already allow workflow writes.
 
-The workflows request `contents: write` to publish their generated files. In GitHub, open **Settings > Actions > General > Workflow permissions** and enable **Read and write permissions** if repository policy does not already allow the workflows. No personal access token is needed for these workflows.
-
-After the first successful workflow run, confirm the generated graphics exist on their referenced branches and paths. GitHub Actions may need to be enabled for the repository.
-
-## Contact links
-
-No email, LinkedIn, Codeforces, or LeetCode URL is configured because those details were not provided. Add verified links to the README if desired.
+The generator fetches the user's public contribution chart data from `github-contributions.vercel.app`. It creates the SVG locally in this repository; the upstream site itself draws its chart in a browser canvas rather than providing an embeddable SVG image endpoint.
