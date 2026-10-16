@@ -1,5 +1,5 @@
 ﻿<div align="center">
-  <img src="./assets/profile-avatar-pixel-frame.gif" width="160" height="160" alt="Ojaswi's clear portrait with pixel blocks assembling around it from top to bottom" />
+  <img src="./assets/profile-avatar-block-render.gif" width="144" height="144" alt="Ojaswi's portrait forming from pixel blocks and resolving into the clear photo" />
   <h1>Ojaswi Kashtheriya</h1>
   <p><strong>BCA (Artificial Intelligence &amp; Machine Learning) · Frontend Developer</strong></p>
   <p>
