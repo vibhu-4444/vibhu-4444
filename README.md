@@ -1,5 +1,5 @@
 ﻿<div align="center">
-  <img src="https://avatars.githubusercontent.com/u/214882659?v=4" width="144" height="144" alt="GitHub avatar for Ojaswi Kashtheriya" />
+  <img src="./assets/profile-avatar.gif" width="144" height="144" alt="Ojaswi's GitHub profile photo with a subtle animated green halo" />
   <h1>Ojaswi Kashtheriya</h1>
   <p><strong>BCA (Artificial Intelligence &amp; Machine Learning) · Frontend Developer</strong></p>
   <p>
