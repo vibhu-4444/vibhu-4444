@@ -71,7 +71,7 @@ Architected a TypeScript monorepo with web, API, and worker apps. Built music pl
 
 <div align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=vibhu-4444&amp;show_icons=true&amp;hide_border=true&amp;bg_color=00000000&amp;title_color=ffffff&amp;text_color=9ca3af&amp;icon_color=39d353" width="49%" alt="GitHub statistics for vibhu-4444" />
-  <img src="https://streak-stats.demolab.com?user=vibhu-4444&amp;hide_border=true&amp;background=00000000&amp;ring=39d353&amp;fire=39d353&amp;currStreakLabel=ffffff&amp;sideLabels=9ca3af&amp;dates=6b7280&amp;currStreakNum=ffffff&amp;sideNums=ffffff" width="49%" alt="GitHub contribution streak for vibhu-4444" />
+  <img src="./assets/streak.svg" width="49%" alt="Longest GitHub contribution streak: 21 days" />
 </div>
 <div align="center">
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=vibhu-4444&amp;layout=compact&amp;hide_border=true&amp;bg_color=00000000&amp;title_color=ffffff&amp;text_color=9ca3af&amp;langs_count=8" width="49%" alt="Most used programming languages on public repositories" />

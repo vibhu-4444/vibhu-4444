@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="495" height="195" viewBox="0 0 495 195" role="img" aria-labelledby="title description">
+  <title id="title">Longest contribution streak: 21 days</title>
+  <desc id="description">Longest GitHub contribution streak, as provided by the profile owner.</desc>
+  <rect x="1" y="1" width="493" height="193" rx="8" fill="#0d1117" stroke="#30363d" />
+  <text x="28" y="45" fill="#f0f6fc" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="600">Longest Streak</text>
+  <text x="28" y="128" fill="#39d353" font-family="Segoe UI, Arial, sans-serif" font-size="68" font-weight="700">21</text>
+  <text x="112" y="126" fill="#9ca3af" font-family="Segoe UI, Arial, sans-serif" font-size="20">days</text>
+  <path d="M28 151h439" stroke="#30363d" />
+  <text x="28" y="174" fill="#8b949e" font-family="Segoe UI, Arial, sans-serif" font-size="12">GitHub contribution streak · all time</text>
+</svg>
