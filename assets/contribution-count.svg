@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="174" viewBox="0 0 420 174" role="img" aria-labelledby="title description">
+  <title id="title">Total GitHub contributions: 400</title>
+  <desc id="description">Profile owner's stated all-time contribution count.</desc>
+  <rect x="1" y="1" width="418" height="172" rx="10" fill="#0d1117" stroke="#30363d" />
+  <rect x="1" y="1" width="5" height="172" rx="2" fill="#39d353" />
+  <text x="28" y="42" fill="#8b949e" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" letter-spacing="1.2">TOTAL CONTRIBUTIONS</text>
+  <text x="28" y="123" fill="#f0f6fc" font-family="Segoe UI, Arial, sans-serif" font-size="66" font-weight="700">400</text>
+  <text x="176" y="119" fill="#39d353" font-family="Segoe UI, Arial, sans-serif" font-size="18">all time</text>
+</svg>

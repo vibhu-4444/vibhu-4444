@@ -43,11 +43,11 @@ const escapeXml = (value) =>
 const parts = [
   `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="HEIGHT" viewBox="0 0 ${width} HEIGHT" role="img" aria-labelledby="title description">`,
   `<title id="title">GitHub contributions for @${username}</title>`,
-  `<desc id="description">Year-by-year contribution calendar using the dark grayscale style shown on the GitHub profile.</desc>`,
+  `<desc id="description">Year-by-year public contribution calendar using the dark grayscale style shown on the GitHub profile.</desc>`,
   `<rect width="100%" height="100%" fill="#000000"/>`,
   `<g fill="#f0f0f0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">`,
   `<text x="${left}" y="27" font-size="19">@${username} on GitHub</text>`,
-  `<text x="${left}" y="49" font-size="11">Total Contributions: ${years.reduce((sum, entry) => sum + entry.total, 0).toLocaleString("en-US")}</text>`,
+  `<text x="${left}" y="49" font-size="11">Public Contributions Shown: ${years.reduce((sum, entry) => sum + entry.total, 0).toLocaleString("en-US")}</text>`,
   `</g>`,
 ];
 

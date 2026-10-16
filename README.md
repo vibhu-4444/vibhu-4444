@@ -81,7 +81,11 @@ Architected a TypeScript monorepo with web, API, and worker apps. Built music pl
 ## `~/ contributions`
 
 <div align="center">
-  <img src="./assets/contributions.svg" width="100%" alt="Ojaswi's GitHub contributions by year" />
+  <img src="./assets/contribution-count.svg" width="49%" alt="Total GitHub contributions: 400" />
+</div>
+<p align="center">Public contributions by year</p>
+<div align="center">
+  <img src="./assets/contributions.svg" width="100%" alt="Ojaswi's public GitHub contributions by year" />
 </div>
 
 ## `~/ recognition`
